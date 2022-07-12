@@ -40,7 +40,7 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h3>$ <span id="withdraw">00</span></h3>
+                    <h3>$ <span id="currentWithdraw">00</span></h3>
                 </div>
             </div>
             <div class="col-md-4">
@@ -58,13 +58,14 @@
                 <div class="submit-area">
                     <h4>Deposit</h4>
                     <input id="depositAmount" type="number" class="form-control" placeholder="$ amount to Deposit"> <br>
-                    <button id="addDeposit" class="my-button">Deposit</button>
+                    <button id="addDeposit" class="my-button">Deposit</input>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="submit-area">
                     <h4>Withdraw</h4>
-                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ amount to Withdraw"> <br>
+                    <input id="withdrawAmount" type="number" class="form-control" placeholder="$ amount to Withdraw">
+                    <br>
                     <button id="addWithdraw" class="my-button">Withdraw</button>
                 </div>
             </div>
@@ -99,7 +100,11 @@
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click", function () {
             const withdrawNumber = getInputNumber("withdrawAmount");
-            console.log(withdrawNumber);
+
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
+
+            document.getElementById("withdrawAmount").value = "";
         })
 
         function getInputNumber(id) {
@@ -120,26 +125,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-
-    <script class="comment-trash">
-        // code now in trash --
-        // const depositAmount = document.getElementById("depositAmount").value;
-        //     const depositNumber = parseFloat(depositAmount);
-
-        /*
-        // // adding deposit input to deposit
-        // const currentDeposit = document.getElementById('currentDeposit').innerText;
-        // const currentDepositNumber = parseFloat(currentDeposit);
-        // const totalDeposit = depositNumber + currentDepositNumber;
-        // document.getElementById("currentDeposit").innerText = totalDeposit;
-
-        // // adding deposit amount to balance
-        // const balance = parseFloat(document.getElementById("currentBalance").innerText);
-        // const addBalance = balance + depositNumber;
-        // document.getElementById("currentBalance").innerText = addBalance;
-        // {this codes are replaced by updateSpanText function}
-        */
-    </script>
 </body>
 
 </html>
